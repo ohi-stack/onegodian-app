@@ -1,0 +1,232 @@
+{
+  "app": {
+    "name": "The OneGodian App",
+    "domain": "app.onegodian.com",
+    "tagline": "Unified access to the OneGodian platform ecosystem.",
+    "description": "The OneGodian App is the public and member-facing experience hub for identity, learning, media, commerce, OMOS, QRV verification, Galaxy, Capital, and ecosystem navigation.",
+    "status": "development-content-ready",
+    "primaryCta": {
+      "label": "Explore Ecosystem",
+      "href": "/ecosystem"
+    },
+    "secondaryCta": {
+      "label": "Open OMOS",
+      "href": "https://omos.onegodian.com"
+    }
+  },
+  "dashboard": {
+    "eyebrow": "Central Access",
+    "title": "OneGodian Dashboard",
+    "intro": "A real navigation and content layer for the OneGodian ecosystem. Use this dashboard to move between the App, OMOS, Galaxy, Capital, learning, media, products, certificates, and public documentation.",
+    "priorityNotice": "Production focus: stabilize content, connect active domains, expose manifests, and convert the ecosystem into usable revenue and member infrastructure.",
+    "modules": [
+      {
+        "slug": "ecosystem",
+        "title": "Ecosystem",
+        "summary": "Navigate all major OneGodian properties from one place.",
+        "href": "/ecosystem",
+        "status": "active"
+      },
+      {
+        "slug": "omos",
+        "title": "OMOS Node",
+        "summary": "Open the OneGodian Metaphysical Operating System for protocol, identity, algorithm, and systems documentation.",
+        "href": "https://omos.onegodian.com",
+        "status": "external"
+      },
+      {
+        "slug": "registry",
+        "title": "Registry",
+        "summary": "Access public-safe registry, certificate, protocol, and verification links.",
+        "href": "/registry",
+        "status": "active"
+      },
+      {
+        "slug": "tools",
+        "title": "Tools",
+        "summary": "Use member-safe tools, calculators, forms, mappers, and system utilities.",
+        "href": "/tools",
+        "status": "active"
+      },
+      {
+        "slug": "media",
+        "title": "Media",
+        "summary": "Access videos, music, founder updates, campaign media, and public education assets.",
+        "href": "/media",
+        "status": "active"
+      },
+      {
+        "slug": "capital",
+        "title": "Capital",
+        "summary": "Open the capital, disclosure, support, product, and infrastructure funding layer.",
+        "href": "https://capital.onegodian.com",
+        "status": "external"
+      },
+      {
+        "slug": "galaxy",
+        "title": "Galaxy",
+        "summary": "Explore planets, realms, lore, maps, timeline, and the visual ecosystem layer.",
+        "href": "https://galaxy.onegodian.com",
+        "status": "external"
+      },
+      {
+        "slug": "learn",
+        "title": "University / Learning",
+        "summary": "Access OneGodian courses, training, certificates, and learning pathways.",
+        "href": "https://u.onegodian.com",
+        "status": "external"
+      },
+      {
+        "slug": "products",
+        "title": "Products",
+        "summary": "Open books, downloads, merch, memberships, founder products, and identity commerce.",
+        "href": "https://onegodian.com",
+        "status": "external"
+      },
+      {
+        "slug": "quantumohi",
+        "title": "QuantumOHI",
+        "summary": "Enterprise-facing technology, systems, infrastructure, and OHI positioning.",
+        "href": "https://quantumohi.com",
+        "status": "external"
+      }
+    ]
+  },
+  "ecosystem": {
+    "title": "OneGodian Ecosystem",
+    "intro": "The OneGodian ecosystem connects public explanation, commerce, education, application infrastructure, OMOS, Galaxy, capital infrastructure, QRV verification, and QuantumOHI systems positioning.",
+    "domains": [
+      {
+        "domain": "onegodian.org",
+        "name": "OneGodian.org",
+        "role": "Civil, cultural, educational, archival, and public-facing explanation layer.",
+        "href": "https://onegodian.org"
+      },
+      {
+        "domain": "onegodian.com",
+        "name": "OneGodian.com",
+        "role": "Commerce, digital products, books, merch, courses, memberships, and identity products.",
+        "href": "https://onegodian.com"
+      },
+      {
+        "domain": "u.onegodian.com",
+        "name": "U OneGodian",
+        "role": "Learning infrastructure, courses, certifications, onboarding, and education dashboards.",
+        "href": "https://u.onegodian.com"
+      },
+      {
+        "domain": "app.onegodian.com",
+        "name": "The OneGodian App",
+        "role": "Unified member and public experience hub.",
+        "href": "https://app.onegodian.com"
+      },
+      {
+        "domain": "galaxy.onegodian.com",
+        "name": "OneGodian Galaxy",
+        "role": "Cosmos, lore, realms, visual discovery, maps, timelines, and interactive exploration.",
+        "href": "https://galaxy.onegodian.com"
+      },
+      {
+        "domain": "omos.onegodian.com",
+        "name": "OMOS",
+        "role": "Operational intelligence, protocol documentation, identity-aware systems, and system prompts.",
+        "href": "https://omos.onegodian.com"
+      },
+      {
+        "domain": "capital.onegodian.com",
+        "name": "OneGodian Capital",
+        "role": "Capital, support, disclosure, products, infrastructure, Zolfi, Instryx, and verification workflows.",
+        "href": "https://capital.onegodian.com"
+      },
+      {
+        "domain": "quantumohi.com",
+        "name": "QuantumOHI",
+        "role": "Enterprise-facing systems, OHI framework presentation, platform consulting, and technical strategy.",
+        "href": "https://quantumohi.com"
+      },
+      {
+        "domain": "qrv.network",
+        "name": "QRV Network",
+        "role": "Verification, credentials, certificates, registry infrastructure, and trust-layer tooling.",
+        "href": "https://qrv.network"
+      }
+    ]
+  },
+  "campaigns": {
+    "remember": {
+      "slug": "remember",
+      "title": "OneGodian: Remember",
+      "eyebrow": "Campaign",
+      "intro": "Remember who you are. Remember your family. Remember your purpose. Remember the light. You are not lost.",
+      "body": "The OneGodian: Remember campaign is a public-facing identity and continuity campaign built to preserve memory, restore dignity, clarify purpose, and connect people to the OneGodian ecosystem through education, media, products, support actions, and direct participation.",
+      "actions": [
+        {
+          "label": "Visit OneGodian.org",
+          "href": "https://onegodian.org"
+        },
+        {
+          "label": "Support the Buildout",
+          "href": "https://capital.onegodian.com"
+        },
+        {
+          "label": "Shop Remember Products",
+          "href": "https://onegodian.com"
+        },
+        {
+          "label": "Open OMOS",
+          "href": "https://omos.onegodian.com"
+        }
+      ],
+      "sections": [
+        {
+          "title": "Core Mission",
+          "items": ["Preserve memory", "Protect identity", "Clarify purpose", "Restore dignity", "Build disciplined growth"]
+        },
+        {
+          "title": "Support Actions",
+          "items": ["Subscribe to media", "Purchase Remember products", "Contribute to the infrastructure buildout", "Share the campaign page", "Invite others into the ecosystem"]
+        }
+      ]
+    }
+  },
+  "pages": {
+    "registry": {
+      "title": "Registry",
+      "intro": "Public-safe access to OneGodian records, certificates, QRV verification, protocol references, and ecosystem registries."
+    },
+    "tools": {
+      "title": "Tools",
+      "intro": "Member-safe tools for navigation, identity reflection, forms, verification lookups, calculators, and ecosystem utilities."
+    },
+    "media": {
+      "title": "Media",
+      "intro": "Videos, music, founder communications, campaign assets, educational materials, and creative media from the OneGodian ecosystem."
+    },
+    "members": {
+      "title": "Members",
+      "intro": "Membership access, profiles, certificates, community resources, and personal dashboard pathways."
+    },
+    "certificates": {
+      "title": "Certificates",
+      "intro": "Certificate viewing, QRV verification, digital credentials, and public-safe proof records."
+    },
+    "products": {
+      "title": "Products",
+      "intro": "Books, digital downloads, courses, memberships, apparel, creator products, and identity commerce connected to OneGodian.com."
+    },
+    "docs": {
+      "title": "Documentation",
+      "intro": "Protocol docs, OMOS docs, app docs, QRV docs, capital disclosure docs, plugin bridge docs, and deployment notes."
+    }
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "message": "This page is not available yet. Use the dashboard or ecosystem index to continue.",
+    "links": [
+      { "label": "Dashboard", "href": "/dashboard" },
+      { "label": "Ecosystem", "href": "/ecosystem" },
+      { "label": "Remember Campaign", "href": "/campaigns/remember" },
+      { "label": "OMOS", "href": "https://omos.onegodian.com" }
+    ]
+  }
+}
