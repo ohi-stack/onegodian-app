@@ -1,0 +1,81 @@
+{
+  "version": "1.0.0",
+  "status": "planned_manifest",
+  "source": "https://omos.onegodian.com/api/manifest",
+  "cards": [
+    {
+      "id": "organization",
+      "title": "Organization",
+      "target": "https://onegodian.org",
+      "role": "Public identity and institutional home",
+      "statusEndpoint": null,
+      "displayStatus": "linked"
+    },
+    {
+      "id": "store",
+      "title": "Store",
+      "target": "https://onegodian.com",
+      "role": "Commerce, products, downloads, certificates, and campaign collections",
+      "statusEndpoint": null,
+      "displayStatus": "linked"
+    },
+    {
+      "id": "university",
+      "title": "University",
+      "target": "https://u.onegodian.com",
+      "role": "Courses, lessons, learning paths, and training certificates",
+      "statusEndpoint": null,
+      "displayStatus": "linked"
+    },
+    {
+      "id": "galaxy",
+      "title": "Galaxy",
+      "target": "https://galaxy.onegodian.com",
+      "role": "Planet navigator, planet stores, galaxy map, and lore navigation",
+      "statusEndpoint": null,
+      "displayStatus": "linked"
+    },
+    {
+      "id": "capital",
+      "title": "Capital",
+      "target": "https://capital.onegodian.com",
+      "role": "Corporate finance, funding, capital strategy, and contributor/investor information",
+      "statusEndpoint": null,
+      "displayStatus": "linked"
+    },
+    {
+      "id": "omos",
+      "title": "OMOS",
+      "target": "https://omos.onegodian.com",
+      "role": "Protocol, specification, alignment system, developer docs, and node runtime",
+      "statusEndpoint": "https://omos.onegodian.com/api/health",
+      "manifestEndpoint": "https://omos.onegodian.com/api/manifest",
+      "displayStatus": "node_target"
+    },
+    {
+      "id": "repositories",
+      "title": "Repositories",
+      "target": "https://github.com/ohi-stack",
+      "role": "Repository status and development links",
+      "statusEndpoint": null,
+      "displayStatus": "linked"
+    },
+    {
+      "id": "plugin-status",
+      "title": "Plugin Status",
+      "target": "https://omos.onegodian.com/api/bridge/status",
+      "role": "WordPress plugin bridge status for OneGodian.com, OneGodian.org, and QuantumOHI.com",
+      "statusEndpoint": "https://omos.onegodian.com/api/bridge/status",
+      "displayStatus": "planned"
+    },
+    {
+      "id": "api-health",
+      "title": "API Health",
+      "target": "https://omos.onegodian.com/api/health",
+      "role": "Node endpoint checks for OMOS health, manifest, tools, docs, artifacts, and bridge status",
+      "statusEndpoint": "https://omos.onegodian.com/api/health",
+      "displayStatus": "node_target"
+    }
+  ],
+  "implementationRule": "Cards may be displayed in app.OneGodian.com as public/member-facing navigation and status summaries. Privileged operator controls remain outside the app surface."
+}
