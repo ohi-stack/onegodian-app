@@ -1,0 +1,36 @@
+export const onegodianMembersPlugin = {
+  name: 'OneGodian Members',
+  slug: 'onegodian-members',
+  version: '2.0.5',
+  packageName: 'onegodian-members-v2.0.5-production-full-ui-brand-upgrade.zip',
+  wordpressBaseUrl: 'https://onegodian.org',
+  dashboardUrl: 'https://onegodian.org/members/',
+  membershipsUrl: 'https://onegodian.org/product-category/memberships/',
+  myAccountUrl: 'https://onegodian.org/my-account/',
+  appRoute: '/members',
+  status: 'production-sync',
+  hposCompatible: true,
+  woocommerceProductSync: true,
+  stripeFallbackMode: 'woocommerce-product-links',
+  calendarShortcodes: ['[onegodian_calendar]', '[onegodian_calendar_interface]'],
+  membershipLevels: [
+    'Spiritual',
+    'Tribal',
+    'Business',
+    'Digital Real Estate',
+    'Pet',
+    'Student',
+    'Senior',
+  ],
+  billingModes: ['Monthly', 'Annual'],
+  brand: {
+    obsidian: '#070607',
+    panel: '#17121f',
+    purple: '#6f3cff',
+    gold: '#d8b35a',
+    goldLight: '#f0d98a',
+    softWhite: '#f5f1e8',
+  },
+} as const;
+
+export type OnegodianMembersPluginConfig = typeof onegodianMembersPlugin;
