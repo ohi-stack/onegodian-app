@@ -6,7 +6,7 @@ Production domain: https://app.onegodian.com
 
 ## Purpose
 
-This repository is for the OneGodian App experience layer. It provides identity-facing and member-facing application routes, including dashboards, ecosystem navigation, registry viewing, products, certificates, tools, media, settings, and documentation.
+This repository is for the OneGodian App experience layer. It provides identity-facing and member-facing application routes, including dashboards, University schools and courses, ecosystem navigation, registry viewing, products, certificates, tools, media, settings, and documentation.
 
 ## Domain Separation Rule
 
@@ -22,6 +22,7 @@ https://console.onegodian.com
 ## Allowed App Areas
 
 - /dashboard
+- /university
 - /ecosystem
 - /registry
 - /tools
@@ -29,12 +30,27 @@ https://console.onegodian.com
 - /certificates
 - /products
 - /media
+- /learning
 - /settings
 - /docs
 - /api/health
 - /api/manifest
 - /api/tools
 - /api/stats
+
+## University of OneGodian App Module
+
+The `/university` experience is the app-native catalog and routing gateway for University of OneGodian schools, courses, foundational pathways, and certificate information.
+
+Canonical LMS authority:
+
+- University LMS: https://u.onegodian.org
+- App route: /university
+- Current catalog: 8 schools and 60 structured courses
+- App responsibility: discovery, browsing, and routing
+- LMS responsibility: enrollment, lessons, quizzes, assignments, progress, payments, and certificate issuance
+
+The app must not represent proprietary certificates or internal degree pathways as accredited academic degrees, state-issued licenses, or regulated professional credentials unless that status is independently established and documented.
 
 ## OneGodian Members Plugin Sync
 
