@@ -36,6 +36,21 @@ https://console.onegodian.com
 - /api/tools
 - /api/stats
 
+## OneGodian Members Plugin Sync
+
+Current synced WordPress plugin target:
+
+- Plugin: OneGodian Members
+- Slug: onegodian-members
+- Version: 2.0.5
+- Package: onegodian-members-v2.0.5-production-full-ui-brand-upgrade.zip
+- App route: /members
+- Config: src/config/onegodian-members-plugin.ts
+- WordPress dashboard: https://onegodian.org/members/
+- WooCommerce source of truth: https://onegodian.org
+
+The app member route is an experience gateway. Login, checkout, WooCommerce orders, membership recognition, and protected WordPress pages remain controlled by WordPress/WooCommerce until a future production API bridge is fully operational and documented.
+
 ## Restricted Console-Only Areas
 
 Do not place these inside the OneGodian App:
@@ -57,3 +72,7 @@ Do not place these inside the OneGodian App:
 
 If a feature is public-facing or member-facing, it may live in the App.
 If a feature is operator-facing, privileged, administrative, or execution-governing, it belongs in the Console.
+
+## Production Rule
+
+If it is not fully operational, documented, repeatable, and deployable, it is not active in the current version.
