@@ -50,6 +50,10 @@ Canonical LMS authority:
 - App responsibility: discovery, browsing, and routing
 - LMS responsibility: enrollment, lessons, quizzes, assignments, progress, payments, and certificate issuance
 
+Detailed implementation boundary:
+
+- `docs/university-lms-boundary.md`
+
 The app must not represent proprietary certificates or internal degree pathways as accredited academic degrees, state-issued licenses, or regulated professional credentials unless that status is independently established and documented.
 
 ## OneGodian Members Plugin Sync
