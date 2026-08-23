@@ -1,54 +1,86 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 
-type Answer = 0 | 1 | 2;
+type AnswerValue = 'yes' | 'not_sure' | 'no';
 type Stage = 'Explorer' | 'Aligned' | 'Strong Alignment';
+type MapperAnswer = { questionId: string; answer: AnswerValue };
+type MapperResult = {
+  version: string;
+  score: number;
+  maxScore: number;
+  classification: Stage;
+  summary: string;
+  identityNotice: string;
+  dataPolicy: string;
+};
 
 const questions = [
-  'Do you believe everything comes from one source?',
-  'Do you believe there is one truth behind everything?',
-  'Do you believe your life has a purpose?',
-  'Do you feel connected to something greater than yourself?',
-  'Have you thought about how you describe your belief identity?',
+  { id: 'source', text: 'Do you believe everything comes from one source?' },
+  { id: 'truth', text: 'Do you believe there is one truth behind everything?' },
+  { id: 'purpose', text: 'Do you believe your life has a purpose?' },
+  { id: 'connection', text: 'Do you feel connected to something greater than yourself?' },
+  { id: 'identity', text: 'Have you thought about your belief identity?' },
+] as const;
+
+const answerOptions: { label: string; value: AnswerValue }[] = [
+  { label: 'Yes', value: 'yes' },
+  { label: 'Not sure', value: 'not_sure' },
+  { label: 'No', value: 'no' },
 ];
 
-const answerOptions: { label: string; value: Answer }[] = [
-  { label: 'Yes', value: 2 },
-  { label: 'Not sure', value: 1 },
-  { label: 'No', value: 0 },
-];
-
-function classify(score: number): Stage {
-  if (score >= 8) return 'Strong Alignment';
-  if (score >= 5) return 'Aligned';
-  return 'Explorer';
-}
+const apiBase = (process.env.NEXT_PUBLIC_ONEGODIAN_API_URL || 'https://api.onegodian.org').replace(/\/$/, '');
 
 export default function BeliefMapperClient() {
   const [started, setStarted] = useState(false);
   const [index, setIndex] = useState(0);
-  const [answers, setAnswers] = useState<Answer[]>([]);
-  const [finished, setFinished] = useState(false);
+  const [answers, setAnswers] = useState<MapperAnswer[]>([]);
+  const [result, setResult] = useState<MapperResult | null>(null);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState('');
 
-  const score = useMemo(() => answers.reduce((sum, value) => sum + value, 0), [answers]);
-  const stage = classify(score);
+  async function submitAnswers(nextAnswers: MapperAnswer[]) {
+    setSubmitting(true);
+    setError('');
 
-  function answer(value: Answer) {
-    const next = [...answers, value];
+    try {
+      const response = await fetch(`${apiBase}/api/v1/belief-mapper/evaluate`, {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ answers: nextAnswers }),
+      });
+
+      if (!response.ok) throw new Error(`Belief Mapper API returned ${response.status}`);
+      const data = (await response.json()) as MapperResult;
+      setResult(data);
+    } catch (err) {
+      console.error(err);
+      setError('Your result could not be calculated right now. Your answers were not saved. Please try again.');
+    } finally {
+      setSubmitting(false);
+    }
+  }
+
+  async function answer(value: AnswerValue) {
+    if (submitting) return;
+    const next = [...answers, { questionId: questions[index].id, answer: value }];
     setAnswers(next);
+
     if (index >= questions.length - 1) {
-      setFinished(true);
+      await submitAnswers(next);
       return;
     }
-    setIndex(index + 1);
+
+    setIndex((current) => current + 1);
   }
 
   function restart() {
     setStarted(false);
     setIndex(0);
     setAnswers([]);
-    setFinished(false);
+    setResult(null);
+    setSubmitting(false);
+    setError('');
   }
 
   return (
@@ -56,54 +88,55 @@ export default function BeliefMapperClient() {
       <section style={styles.shell} aria-live="polite">
         <div style={styles.brand}>ONEGODIAN™ • BELIEF MAPPER</div>
 
-        {!started && !finished && (
+        {!started && !result && (
           <div style={styles.card}>
             <div style={styles.orb}>1</div>
             <h1 style={styles.h1}>What do you believe at your core?</h1>
             <p style={styles.copy}>
-              Five quick questions. No account required. Your answers stay in this browser session and are not treated as a declaration of identity.
+              Five quick questions. No account required. The mapper evaluates answer alignment and does not declare your identity.
             </p>
             <button style={styles.primary} onClick={() => setStarted(true)}>Start the 10-second check</button>
             <p style={styles.note}>Voluntary reflection only. You decide how you identify.</p>
           </div>
         )}
 
-        {started && !finished && (
+        {started && !result && (
           <div style={styles.card}>
             <div style={styles.progressTrack} aria-label={`Question ${index + 1} of ${questions.length}`}>
               <div style={{ ...styles.progressFill, width: `${((index + 1) / questions.length) * 100}%` }} />
             </div>
             <div style={styles.kicker}>QUESTION {index + 1} OF {questions.length}</div>
-            <h2 style={styles.h2}>{questions[index]}</h2>
+            <h2 style={styles.h2}>{questions[index].text}</h2>
             <div style={styles.answers}>
               {answerOptions.map((option) => (
-                <button key={option.label} style={styles.answer} onClick={() => answer(option.value)}>
-                  {option.label}
+                <button key={option.value} style={styles.answer} disabled={submitting} onClick={() => answer(option.value)}>
+                  {submitting ? 'Calculating…' : option.label}
                 </button>
               ))}
             </div>
+            {error && (
+              <div role="alert" style={styles.error}>
+                <strong>Unable to calculate.</strong>
+                <span>{error}</span>
+                <button style={styles.secondary} onClick={restart}>Start over</button>
+              </div>
+            )}
           </div>
         )}
 
-        {finished && (
+        {result && (
           <div style={styles.card}>
-            <div style={styles.badge}>{stage}</div>
+            <div style={styles.badge}>{result.classification}</div>
             <h1 style={styles.h1}>Your reflection result</h1>
-            <p style={styles.copy}>
-              {stage === 'Strong Alignment'
-                ? 'Your answers show strong alignment with the unity, purpose, and One-Source ideas used in the OneGodian framework.'
-                : stage === 'Aligned'
-                  ? 'Your answers show meaningful alignment with several OneGodian ideas, with room to keep exploring.'
-                  : 'Your answers place you in exploration mode. The next step is learning, not labeling.'}
-            </p>
-            <div style={styles.score}>Reflection score: {score}/10</div>
-            <p style={styles.note}>
-              This result is educational and does not assign a religion, legal status, membership, or personal identity. Only you can choose an identity.
-            </p>
+            <p style={styles.copy}>{result.summary}</p>
+            <div style={styles.score}>Reflection score: {result.score}/{result.maxScore}</div>
+            <p style={styles.note}>{result.identityNotice}</p>
+            <p style={styles.dataNote}>{result.dataPolicy}</p>
             <div style={styles.actions}>
               <a href="https://onegodian.org" style={styles.primaryLink}>Learn what OneGodian means</a>
               <button style={styles.secondary} onClick={restart}>Try again</button>
             </div>
+            <div style={styles.version}>{result.version}</div>
           </div>
         )}
       </section>
@@ -136,6 +169,7 @@ const styles: Record<string, React.CSSProperties> = {
   kicker: { fontSize: 12, letterSpacing: '.14em', fontWeight: 800, color: '#cdb879', marginTop: 22 },
   copy: { fontSize: 17, lineHeight: 1.6, color: '#cbd5e1', textAlign: 'center' },
   note: { fontSize: 12, lineHeight: 1.5, color: '#94a3b8', textAlign: 'center', marginTop: 16 },
+  dataNote: { fontSize: 12, lineHeight: 1.5, color: '#94a3b8', textAlign: 'center', marginTop: 8 },
   progressTrack: { height: 8, borderRadius: 999, background: 'rgba(255,255,255,.08)', overflow: 'hidden' },
   progressFill: { height: '100%', borderRadius: 999, background: 'linear-gradient(90deg,#d7b35f,#8b6ad9)', transition: 'width .25s ease' },
   answers: { display: 'grid', gap: 12 },
@@ -146,4 +180,6 @@ const styles: Record<string, React.CSSProperties> = {
   badge: { display: 'table', margin: '0 auto 20px', padding: '9px 14px', borderRadius: 999, border: '1px solid rgba(215,179,95,.45)', background: 'rgba(215,179,95,.1)', color: '#f4dd9e', fontSize: 13, fontWeight: 900, letterSpacing: '.08em', textTransform: 'uppercase' },
   score: { textAlign: 'center', fontSize: 18, fontWeight: 900, marginTop: 20 },
   actions: { display: 'grid', gap: 10, marginTop: 24 },
+  error: { display: 'grid', gap: 10, marginTop: 20, padding: 16, borderRadius: 14, background: 'rgba(239,68,68,.08)', border: '1px solid rgba(239,68,68,.25)', color: '#fecaca', fontSize: 13, lineHeight: 1.5 },
+  version: { marginTop: 18, textAlign: 'center', color: '#64748b', fontSize: 11 },
 };
