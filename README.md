@@ -6,7 +6,7 @@ Production domain: https://app.onegodian.com
 
 ## Purpose
 
-This repository is for the OneGodian App experience layer. It provides identity-facing and member-facing application routes, including dashboards, University schools and courses, ecosystem navigation, registry viewing, products, certificates, tools, media, settings, and documentation.
+This repository is for the OneGodian App experience layer. It provides identity-facing and member-facing application routes, including dashboards, University schools and courses, ecosystem navigation, registry viewing, products, certificates, tools, media, settings, documentation, and public reflection experiences.
 
 ## Domain Separation Rule
 
@@ -33,10 +33,29 @@ https://console.onegodian.com
 - /learning
 - /settings
 - /docs
+- /belief-mapper
 - /api/health
 - /api/manifest
 - /api/tools
 - /api/stats
+
+## Belief Mapper Experience
+
+Current prototype route:
+
+- App route: `/belief-mapper`
+- Status: v0.2 prototype / pre-production
+- Purpose: short, privacy-first educational reflection aligned to the OneGodian Experience Layer
+- Lite flow: 5 tap-only questions
+- Results: Explorer / Aligned / Strong Alignment
+- Identity assignment: disabled
+- Membership creation: disabled
+- Account requirement: none
+- Raw belief-answer persistence: disabled by design for the Lite prototype
+
+Canonical protocol/scoring documentation is maintained in `ohi-stack/onegodian-protocol/mapper`.
+
+The Belief Mapper must not automatically assign a OneGodian identity, create an INO membership record, or use belief-answer vectors for advertising or behavioral targeting. Formal membership and governance processes remain separate affirmative workflows.
 
 ## University of OneGodian App Module
 
