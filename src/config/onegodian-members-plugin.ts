@@ -11,6 +11,7 @@ export const onegodianMembersPlugin = {
   communityDirectoryUrl: 'https://onegodian.org/members/',
   membershipsUrl: 'https://onegodian.org/product-category/memberships/',
   myAccountUrl: 'https://onegodian.org/my-account/',
+  createAccountUrl: 'https://onegodian.org/my-account/',
   lostPasswordUrl: 'https://onegodian.org/my-account/lost-password/',
   beliefMapperUrl: 'https://onegodian.org/belief-mapper/',
   journeyUrl: 'https://onegodian.org/onegodian-journey/',
