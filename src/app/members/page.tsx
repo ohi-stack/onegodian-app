@@ -2,12 +2,23 @@ import { onegodianMembersPlugin } from '../../config/onegodian-members-plugin';
 
 const features = [
   'Member dashboard',
+  'OneGodian 101 orientation',
   'Digital ID',
   'Certificates',
   'Protected resources',
   'WooCommerce membership sync',
   'OneGodian Calendar OTS-V5',
 ];
+
+const buttonStyle = {
+  border: '1px solid rgba(216,179,90,0.42)',
+  color: '#f0d98a',
+  padding: '13px 18px',
+  borderRadius: 999,
+  fontWeight: 950,
+  textDecoration: 'none',
+  background: 'rgba(216,179,90,0.08)',
+} as const;
 
 export default function MembersPage() {
   const cfg = onegodianMembersPlugin;
@@ -39,13 +50,13 @@ export default function MembersPage() {
             background: 'rgba(216,179,90,0.10)',
           }}
         >
-          OneGodian Members • v{cfg.version} • Synced
+          OneGodian Members • v{cfg.version} • production candidate
         </div>
 
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'minmax(0,1.4fr) minmax(280px,0.6fr)',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
             gap: 28,
             alignItems: 'stretch',
             marginTop: 28,
@@ -53,7 +64,7 @@ export default function MembersPage() {
         >
           <div
             style={{
-              border: `1px solid rgba(216,179,90,0.28)`,
+              border: '1px solid rgba(216,179,90,0.28)',
               borderRadius: 28,
               padding: 32,
               background: 'rgba(255,255,255,0.045)',
@@ -64,9 +75,9 @@ export default function MembersPage() {
               OneGodian Member Access
             </h1>
             <p style={{ color: 'rgba(245,241,232,0.82)', fontSize: 18, lineHeight: 1.75, maxWidth: 760 }}>
-              The OneGodian App is now synced with the production OneGodian Members WordPress plugin.
+              The OneGodian App is aligned with the OneGodian Members v{cfg.version} production candidate.
               WordPress and WooCommerce remain the source of membership, checkout, login, and order truth;
-              the app provides the member-facing navigation and access gateway.
+              this app provides the member-facing navigation and access gateway.
             </p>
 
             <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginTop: 28 }}>
@@ -83,66 +94,63 @@ export default function MembersPage() {
               >
                 Login / My Account
               </a>
-              <a
-                href={cfg.membershipsUrl}
-                style={{
-                  border: `1px solid rgba(216,179,90,0.42)`,
-                  color: cfg.brand.goldLight,
-                  padding: '13px 18px',
-                  borderRadius: 999,
-                  fontWeight: 950,
-                  textDecoration: 'none',
-                  background: 'rgba(216,179,90,0.08)',
-                }}
-              >
-                View Memberships
-              </a>
-              <a
-                href={cfg.dashboardUrl}
-                style={{
-                  border: `1px solid rgba(111,60,255,0.55)`,
-                  color: cfg.brand.softWhite,
-                  padding: '13px 18px',
-                  borderRadius: 999,
-                  fontWeight: 950,
-                  textDecoration: 'none',
-                  background: 'rgba(111,60,255,0.16)',
-                }}
-              >
-                Open Dashboard
-              </a>
+              <a href={cfg.dashboardUrl} style={buttonStyle}>Open Dashboard</a>
+              <a href={cfg.onegodian101Url} style={buttonStyle}>Start OneGodian 101</a>
             </div>
           </div>
 
           <aside
             style={{
-              border: `1px solid rgba(216,179,90,0.24)`,
+              border: '1px solid rgba(216,179,90,0.24)',
               borderRadius: 28,
               padding: 26,
               background: 'rgba(7,6,7,0.72)',
             }}
           >
-            <h2 style={{ margin: '0 0 14px', fontSize: 24 }}>Production Sync</h2>
-            <dl style={{ margin: 0, display: 'grid', gap: 12 }}>
+            <h2 style={{ margin: '0 0 14px', fontSize: 24 }}>Login Details</h2>
+            <p style={{ color: 'rgba(245,241,232,0.78)', lineHeight: 1.7 }}>
+              Credentials are entered only on OneGodian.org. This app does not collect or store your password.
+            </p>
+            <dl style={{ margin: '20px 0', display: 'grid', gap: 14 }}>
               <div>
-                <dt style={{ color: cfg.brand.goldLight, fontSize: 12, fontWeight: 900, textTransform: 'uppercase' }}>Plugin</dt>
-                <dd style={{ margin: 0 }}>{cfg.name}</dd>
+                <dt style={{ color: cfg.brand.goldLight, fontWeight: 900 }}>Username or email address</dt>
+                <dd style={{ margin: '4px 0 0', color: 'rgba(245,241,232,0.72)' }}>Use the username or email attached to your OneGodian account.</dd>
               </div>
               <div>
-                <dt style={{ color: cfg.brand.goldLight, fontSize: 12, fontWeight: 900, textTransform: 'uppercase' }}>Version</dt>
-                <dd style={{ margin: 0 }}>{cfg.version}</dd>
+                <dt style={{ color: cfg.brand.goldLight, fontWeight: 900 }}>Password</dt>
+                <dd style={{ margin: '4px 0 0', color: 'rgba(245,241,232,0.72)' }}>Enter your password on the secure OneGodian.org account page.</dd>
               </div>
               <div>
-                <dt style={{ color: cfg.brand.goldLight, fontSize: 12, fontWeight: 900, textTransform: 'uppercase' }}>Checkout</dt>
-                <dd style={{ margin: 0 }}>WooCommerce product links</dd>
-              </div>
-              <div>
-                <dt style={{ color: cfg.brand.goldLight, fontSize: 12, fontWeight: 900, textTransform: 'uppercase' }}>HPOS</dt>
-                <dd style={{ margin: 0 }}>Compatible</dd>
+                <dt style={{ color: cfg.brand.goldLight, fontWeight: 900 }}>Remember me</dt>
+                <dd style={{ margin: '4px 0 0', color: 'rgba(245,241,232,0.72)' }}>Use this option only on a private device.</dd>
               </div>
             </dl>
+            <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
+              <a href={cfg.lostPasswordUrl} style={buttonStyle}>Forgot Password</a>
+              <a href={cfg.createAccountUrl} style={buttonStyle}>Create Account</a>
+              <a href={cfg.membershipsUrl} style={buttonStyle}>Explore Membership</a>
+            </div>
           </aside>
         </div>
+
+        <section
+          style={{
+            border: '1px solid rgba(111,60,255,0.38)',
+            borderRadius: 24,
+            padding: 24,
+            background: 'rgba(111,60,255,0.10)',
+            marginTop: 22,
+          }}
+        >
+          <h2 style={{ margin: '0 0 12px' }}>OneGodian 101</h2>
+          <p style={{ margin: 0, color: 'rgba(245,241,232,0.78)', lineHeight: 1.7 }}>
+            Orientation progress is owned by the OneGodian Members plugin and exposed through the authenticated Members API. Formal University course progress and certificates remain separate LMS records.
+          </p>
+          <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginTop: 18 }}>
+            <a href={cfg.onegodian101Url} style={buttonStyle}>Open Orientation</a>
+            <a href={cfg.onegodian101ProgressUrl} style={buttonStyle}>View Progress</a>
+          </div>
+        </section>
 
         <div
           style={{
@@ -156,7 +164,7 @@ export default function MembersPage() {
             <div
               key={feature}
               style={{
-                border: `1px solid rgba(216,179,90,0.20)`,
+                border: '1px solid rgba(216,179,90,0.20)',
                 borderRadius: 18,
                 padding: 18,
                 background: 'rgba(255,255,255,0.04)',
