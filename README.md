@@ -41,7 +41,9 @@ https://console.onegodian.com
 
 ## Belief Mapper Experience
 
-Current prototype route:
+The OneGodian ecosystem currently has two distinct Mapper surfaces that must not be conflated.
+
+### Public App Lite Mapper
 
 - App route: `/belief-mapper`
 - Status: v0.2 prototype / pre-production
@@ -53,9 +55,20 @@ Current prototype route:
 - Account requirement: none
 - Raw belief-answer persistence: disabled by design for the Lite prototype
 
-Canonical protocol/scoring documentation is maintained in `ohi-stack/onegodian-protocol/mapper`.
+Canonical Lite scoring/protocol documentation is maintained in `ohi-stack/onegodian-protocol/mapper`, with API-backed evaluation owned by `ohi-stack/onegodian-api` where implemented.
 
-The Belief Mapper must not automatically assign a OneGodian identity, create an INO membership record, or use belief-answer vectors for advertising or behavioral targeting. Formal membership and governance processes remain separate affirmative workflows.
+### OneGodian Members Full Mapper
+
+The WordPress OneGodian Members v2.2.0 plugin adds a separate authenticated member reflection surface:
+
+- WordPress route: `/belief-mapper/`
+- Seven administrator-configurable question slots, empty by default
+- Private, consent-gated member responses
+- Self-selected journey stages: Seeker / Believer / OneGodian / Elder
+- No automatic identity-stage assignment from answers, scores, XP, badges, streaks, or activity
+- Raw answers excluded from ordinary member summary sync and public BuddyPress surfaces
+
+The seven configurable Members question slots are an implementation surface and must not be treated as canonical question wording unless approved separately. The OneGodian Protocol Full Mapper describes seven conceptual mapping dimensions; those dimensions and the WordPress question configuration are related but not automatically identical.
 
 ## University of OneGodian App Module
 
@@ -77,18 +90,39 @@ The app must not represent proprietary certificates or internal degree pathways 
 
 ## OneGodian Members Plugin Sync
 
-Current synced WordPress plugin target:
+Current synchronized WordPress plugin target:
 
 - Plugin: OneGodian Members
-- Slug: onegodian-members
-- Version: 2.0.5
-- Package: onegodian-members-v2.0.5-production-full-ui-brand-upgrade.zip
-- App route: /members
-- Config: src/config/onegodian-members-plugin.ts
-- WordPress dashboard: https://onegodian.org/members/
-- WooCommerce source of truth: https://onegodian.org
+- Slug: `onegodian-members`
+- Version: `2.2.0`
+- Package: `onegodian-members-v2.2.0-production.zip`
+- Canonical source repository: `ohi-stack/onegodian-platform-plugin`
+- Canonical source branch: `main`
+- App route: `/members`
+- App config: `src/config/onegodian-members-plugin.ts`
+- WordPress member dashboard: `https://onegodian.org/member-dashboard/`
+- WordPress community directory: `https://onegodian.org/members/`
+- WooCommerce source of truth: `https://onegodian.org`
+- Status: production candidate; WordPress staging/live deployment verification remains separate
 
-The app member route is an experience gateway. Login, checkout, WooCommerce orders, membership recognition, and protected WordPress pages remain controlled by WordPress/WooCommerce until a future production API bridge is fully operational and documented.
+### Members v2.2.0 surfaces
+
+- `/member-dashboard/`
+- `/member-profile/`
+- `/onegodian-ally/`
+- `/belief-mapper/`
+- `/onegodian-journey/`
+- `/onegodian-time/`
+- `/onegodian-date-converter/`
+
+### Members v2.2.0 REST surfaces
+
+- `GET /wp-json/onegodian/v1/members/me`
+- `GET|POST|DELETE /wp-json/onegodian/v1/members/belief-mapper`
+- `GET /wp-json/onegodian/v1/time/current`
+- `GET /wp-json/onegodian/v1/time/convert?date=YYYY-MM-DD`
+
+The App may consume public/member-safe summaries when a production bridge is explicitly implemented and tested. Login, checkout, WooCommerce orders, membership recognition, raw Mapper responses, and protected WordPress pages remain controlled by the WordPress/WooCommerce Members runtime until that bridge is proven operational.
 
 ## Restricted Console-Only Areas
 
