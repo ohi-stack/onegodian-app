@@ -1,30 +1,14 @@
-name: Members v2.3 Sync
+name: "[RETIRED] Legacy Members/App Verification"
 
 on:
-  push:
-    branches:
-      - main
-      - 'feature/**'
-  pull_request:
-    branches: [main]
+  workflow_dispatch:
 
 jobs:
-  verify-members-sync:
+  retired:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Verify Members v2.3 contract
-        run: node scripts/verify-members-v23.mjs
-
-      - name: Install dependencies
-        run: npm install --no-audit --no-fund
-
-      - name: Build app
-        run: npm run build
+      - name: Retired architecture notice
+        run: |
+          echo "onegodian-app is retained for historical reference only."
+          echo "Use api.OneGodian.org plus the specialized OneGodian properties."
+          echo "Do not restore app.onegodian.com as an active deployment dependency."
