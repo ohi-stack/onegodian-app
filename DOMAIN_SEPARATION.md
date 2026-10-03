@@ -1,65 +1,19 @@
-# OneGodian Domain Separation Policy
+# OneGodian Domain Separation Policy — Current
 
-## Purpose
+## Canonical domains
 
-The OneGodian ecosystem uses strict domain separation to preserve clarity, compliance, operational security, auditability, and institutional readability.
+- `OneGodian.org` — ORGANIZATION: public identity, mission, history, membership, records, educational explanations, institutional/public information.
+- `OneGodian.com` — STORE: products, downloads, merchandise, certificates, services, campaigns, purchases.
+- `u.OneGodian.com` — EDUCATION: University, courses, lessons, learning paths, books, OneGodianese Dictionary, e-learning products, onboarding, training certificates.
+- `galaxy.OneGodian.com` — GALAXY: map, planets, world stores, lore, characters, media, planetary navigation.
+- `ODeFi.OneGodian.com` — CAPITAL: ONEGODIAN, LLC finance materials, capital strategy, disclosures, contributor information, approved financial-platform functions.
+- `OMOS.OneGodian.com` — PROTOCOL: protocol/specification, alignment tools, developer documentation, integrations, API framework.
+- `api.OneGodian.org` — SHARED PLATFORM CORE: authentication, connectors, adapters, MCP, synchronization, analytics, valuation, webhooks, registries, plugin services.
 
-## Domain Roles
+## Retired domain
 
-### onegodian.org
+`app.onegodian.com` is retired and must not be used as a deployment target, navigation destination, integration authority, or architectural dependency.
 
-Identity, education, philosophy, public explanation, chronology, archives, and institutional narrative.
+## Integration rule
 
-### onegodian.com
-
-Commerce, products, services, transactions, monetization, and payments.
-
-### app.onegodian.com
-
-Public and member-facing application layer.
-
-Purpose:
-- dashboards
-- registry viewing
-- tools
-- products
-- certificates
-- ecosystem access
-- media
-- settings
-- member interaction
-
-### console.onegodian.com
-
-Internal command/control plane.
-
-Purpose:
-- ACC
-- agents
-- workflows
-- OCP
-- OEG
-- adapters
-- approvals
-- audit
-- logs
-- policies
-- execution governance
-- operational controls
-
-## Structural Rule
-
-App = experience.
-Console = control.
-
-The App must not contain privileged internal control-plane features.
-
-The Console must not be treated as a public-facing member application.
-
-## Security Rules
-
-- Console requires authenticated operator access.
-- Console should not be indexed.
-- Privileged actions must pass through authorization.
-- Decision records must be logged.
-- Public APIs exposed through the App must remain public-safe.
+Specialized properties connect through `api.OneGodian.org`. The OneGodian MCP Gateway™ is centralized at the API core. Cross-property functionality should use explicit API/adapter contracts rather than reintroducing a general-purpose central App.
